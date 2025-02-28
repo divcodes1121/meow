@@ -1,0 +1,353 @@
+/* App.css - Styles for Google Sheets Clone */
+
+.App {
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Override default button styles */
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Toolbar styles */
+.toolbar {
+  display: flex;
+  padding: 4px 8px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+.toolbar button {
+  margin-right: 4px;
+}
+
+/* Cell styles for printing */
+@media print {
+  .menu-bar, .toolbar, .formula-bar, .sheet-tabs {
+    display: none !important;
+  }
+  
+  .grid-container {
+    overflow: visible !important;
+  }
+}
+
+/* Fix for Firefox grid layout */
+@-moz-document url-prefix() {
+  .grid-container {
+    width: fit-content;
+  }
+}
+
+/* Make cells non-selectable except when editing */
+.cell {
+  user-select: none;
+}
+
+.cell-editing {
+  user-select: text;
+}
+
+/* Fix for context menu on right edge of screen */
+.context-menu {
+  max-width: 250px;
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Make formula bar input consistent across browsers */
+.formula-input {
+  font: inherit;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Custom scrollbars for the grid */
+.grid-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.grid-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.grid-container::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Menu hover effects */
+.menu-item:hover {
+  background-color: #f1f3f4;
+}
+
+/* Grid lines should be visible when printing */
+@media print {
+  .cell {
+    border-right: 1px solid #ddd !important;
+    border-bottom: 1px solid #ddd !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Chart Dialog Styles */
+.chart-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1200;
+}
+
+.chart-dialog {
+  width: 80%;
+  max-width: 800px;
+  max-height: 90vh;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chart-dialog-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-dialog-header h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #202124;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #5f6368;
+}
+
+.chart-dialog-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.chart-dialog-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.chart-dialog-footer button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.chart-dialog-footer button:hover {
+  background-color: #f1f3f4;
+}
+
+.chart-dialog-footer button.primary-button {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+}
+
+.chart-dialog-footer button.primary-button:hover {
+  background-color: #1967d2;
+}
+
+.chart-dialog-footer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.data-preview {
+  margin-top: 24px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+.data-preview h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.table-container {
+  overflow-x: auto;
+  max-height: 200px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.data-preview table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-preview th,
+.data-preview td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.data-preview th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+}
+
+/* Chart Container and Visualization Styles */
+.charts-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.chart-wrapper {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+.chart-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.chart-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.chart-control-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: #5f6368;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.chart-control-button:hover {
+  background-color: #f1f3f4;
+}
+
+.chart-container {
+  flex: 1;
+  padding: 12px;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+/* Active chart highlight */
+.chart-wrapper.active {
+  box-shadow: 0 0 0 2px #1a73e8, 0 2px 10px rgba(0, 0, 0, 0.1);
+}
